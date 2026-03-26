@@ -42,8 +42,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
+      <div className="min-h-screen flex items-center justify-center bg-app-bg">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
       </div>
     )
   }
@@ -51,7 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (normalizedPathname === '/admin/login') return <>{children}</>
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex bg-app-bg">
       <Sidebar user={user} />
       <main className="flex-1 p-8 overflow-auto">{children}</main>
     </div>

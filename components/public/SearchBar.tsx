@@ -30,8 +30,9 @@ export default function SearchBar() {
         placeholder="Buscar por título o descripción..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm"
+        className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white shadow-sm"
       />
+
     </div>
   )
 }

@@ -11,10 +11,10 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 const TYPE_COLORS: Record<string, string> = {
-  VIDEO_TUTORIAL: 'bg-blue-100 text-blue-700',
-  MANUAL_PDF: 'bg-purple-100 text-purple-700',
-  FAQ: 'bg-cyan-100 text-cyan-700',
-  INFOGRAFIA: 'bg-green-100 text-green-700',
+  VIDEO_TUTORIAL: 'bg-badge-video-bg text-badge-video-fg',
+  MANUAL_PDF: 'bg-badge-pdf-bg text-badge-pdf-fg',
+  FAQ: 'bg-badge-faq-bg text-badge-faq-fg',
+  INFOGRAFIA: 'bg-badge-infografia-bg text-badge-infografia-fg',
 }
 
 export default function AdminTutorialsPage() {
@@ -162,7 +162,7 @@ export default function AdminTutorialsPage() {
         </div>
         <Link
           href="/admin/tutorials/new"
-          className="flex items-center gap-2 bg-blue-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors"
         >
           <PlusCircle size={16} /> Nuevo Tutorial
         </Link>
@@ -176,7 +176,7 @@ export default function AdminTutorialsPage() {
           placeholder="Buscar tutoriales..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          className="w-full pl-9 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-white"
         />
       </div>
 
@@ -184,7 +184,7 @@ export default function AdminTutorialsPage() {
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center h-40">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
           </div>
         ) : (
           <table className="w-full text-sm">
@@ -235,8 +235,8 @@ export default function AdminTutorialsPage() {
                         disabled={toggling === t.id}
                         className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
                           t.active
-                            ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                            ? 'bg-badge-active-bg text-badge-active-fg hover:bg-badge-active-hover'
+                            : 'bg-badge-inactive-bg text-badge-inactive-fg hover:bg-badge-inactive-hover'
                         } ${toggling === t.id ? 'opacity-60 cursor-not-allowed' : ''}`}
                         title={t.active ? 'Desactivar' : 'Activar'}
                       >
@@ -247,7 +247,7 @@ export default function AdminTutorialsPage() {
                       <div className="flex items-center justify-center gap-2">
                         <Link
                           href={`/admin/tutorials/${t.id}`}
-                          className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 text-gray-400 hover:text-primary hover:bg-primary-soft rounded-lg transition-colors"
                           title="Editar"
                         >
                           <Pencil size={14} />

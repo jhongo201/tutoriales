@@ -19,7 +19,7 @@ export default function EditTutorialPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
       </div>
     )
   }
@@ -28,7 +28,7 @@ export default function EditTutorialPage() {
     return (
       <div className="text-center py-20 text-gray-400">
         <p>Tutorial no encontrado</p>
-        <Link href="/admin/tutorials" className="text-blue-600 text-sm mt-2 inline-block">
+        <Link href="/admin/tutorials" className="text-primary text-sm mt-2 inline-block">
           Volver al listado
         </Link>
       </div>

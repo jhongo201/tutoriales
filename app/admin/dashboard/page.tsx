@@ -36,7 +36,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
       </div>
     )
   }
@@ -73,7 +73,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="w-full bg-gray-100 rounded-full h-2">
                   <div
-                    className="bg-blue-600 h-2 rounded-full transition-all"
+                    className="bg-primary h-2 rounded-full transition-all"
                     style={{ width: `${Math.min((item.views / (totals.total_views || 1)) * 100, 100)}%` }}
                   />
                 </div>
@@ -88,7 +88,7 @@ export default function DashboardPage() {
           <div className="space-y-3">
             {topViewed.map((item, i) => (
               <div key={item.id} className="flex items-start gap-3">
-                <span className="text-lg font-black text-blue-200 w-6 shrink-0">
+                <span className="text-lg font-black text-primary/25 w-6 shrink-0">
                   {i + 1}
                 </span>
                 <div>
@@ -124,7 +124,7 @@ export default function DashboardPage() {
                     <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                       log.action_type === 'DOWNLOAD'
                         ? 'bg-purple-100 text-purple-700'
-                        : 'bg-blue-100 text-blue-700'
+                        : 'bg-badge-video-bg text-badge-video-fg'
                     }`}>
                       {log.action_type === 'DOWNLOAD' ? 'Descarga' : 'Vista'}
                     </span>
@@ -149,7 +149,7 @@ function StatCard({
   icon: any; label: string; value: number; color: string
 }) {
   const colors: Record<string, string> = {
-    blue: 'bg-blue-50 text-blue-600',
+    blue: 'bg-primary-soft text-primary',
     green: 'bg-green-50 text-green-600',
     purple: 'bg-purple-50 text-purple-600',
     orange: 'bg-orange-50 text-orange-600',

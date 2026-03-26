@@ -21,7 +21,7 @@ export default function PdfViewer({ url, title, onDownload }: PdfViewerProps) {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-xs text-blue-600 hover:underline px-2 py-1"
+            className="flex items-center gap-1 text-xs text-primary hover:underline px-2 py-1"
           >
             <ExternalLink size={12} /> Abrir en nueva pestaña
           </a>
@@ -29,7 +29,7 @@ export default function PdfViewer({ url, title, onDownload }: PdfViewerProps) {
             href={url}
             download
             onClick={onDownload}
-            className="flex items-center gap-1 text-xs bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700"
+            className="flex items-center gap-1 text-xs bg-primary text-white px-3 py-1 rounded-lg hover:bg-primary-hover"
           >
             <Download size={12} /> Descargar
           </a>
@@ -60,7 +60,7 @@ export default function PdfViewer({ url, title, onDownload }: PdfViewerProps) {
             <a
               href={url}
               download
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm"
+              className="bg-primary text-white px-4 py-2 rounded-lg text-sm"
             >
               Descargar PDF
             </a>

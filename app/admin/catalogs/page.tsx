@@ -172,7 +172,7 @@ export default function AdminCatalogsPage() {
                 onClick={() => setTab(t.key)}
                 className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${
                   tab === t.key
-                    ? 'bg-blue-700 text-white border-blue-700'
+                    ? 'bg-primary text-white border-primary'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
                 }`}
               >
@@ -184,7 +184,7 @@ export default function AdminCatalogsPage() {
           <button
             type="button"
             onClick={() => setCreating((v) => !v)}
-            className="inline-flex items-center gap-2 bg-blue-700 text-white px-3 py-2 rounded-lg text-sm hover:bg-blue-800"
+            className="inline-flex items-center gap-2 bg-primary text-white px-3 py-2 rounded-lg text-sm hover:bg-primary-hover"
           >
             <PlusCircle size={16} /> Nuevo
           </button>
@@ -231,7 +231,7 @@ export default function AdminCatalogsPage() {
                   type="button"
                   onClick={createItem}
                   disabled={savingId === 'new'}
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-blue-700 text-white hover:bg-blue-800 disabled:opacity-60"
+                  className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-primary text-white hover:bg-primary-hover disabled:opacity-60"
                   title="Guardar"
                 >
                   <Save size={14} />
@@ -299,7 +299,7 @@ export default function AdminCatalogsPage() {
                         type="button"
                         onClick={() => saveItem(it)}
                         disabled={savingId === it.id}
-                        className="p-2 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors disabled:opacity-60"
+                        className="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-primary-soft transition-colors disabled:opacity-60"
                         title="Guardar"
                       >
                         <Save size={14} />

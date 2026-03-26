@@ -111,7 +111,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
             type="text"
             value={form.title}
             onChange={(e) => set('title', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             required
           />
         </div>
@@ -124,7 +124,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
             value={form.description}
             onChange={(e) => set('description', e.target.value)}
             rows={4}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
@@ -136,7 +136,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
             <select
               value={form.content_type}
               onChange={(e) => set('content_type', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
             >
               {contentTypes.map((t) => (
                 <option key={t.code} value={t.code}>
@@ -153,7 +153,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
             <select
               value={form.user_profile}
               onChange={(e) => set('user_profile', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
             >
               {userProfiles.map((p) => (
                 <option key={p.code} value={p.code}>
@@ -172,7 +172,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
             <select
               value={form.operation_type}
               onChange={(e) => set('operation_type', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">(Sin operación)</option>
               {operationTypes.map((op) => (
@@ -191,7 +191,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
               type="number"
               value={form.display_order}
               onChange={(e) => set('display_order', Number(e.target.value))}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               min={0}
             />
           </div>
@@ -237,7 +237,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
               type="text"
               value={form.resource_url}
               onChange={(e) => set('resource_url', e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="https://..."
             />
           </div>
@@ -273,7 +273,7 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-700 text-white text-sm hover:bg-blue-800 disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white text-sm hover:bg-primary-hover disabled:opacity-60"
         >
           {saving ? (
             <span className="animate-spin inline-block h-4 w-4 border-b-2 border-white rounded-full" />

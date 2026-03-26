@@ -78,31 +78,31 @@ export default async function TutorialDetailPage({
   const youtubeEmbedUrl = isYoutube ? getYoutubeEmbedUrl(normalizedResourceUrl) : ''
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-app-bg p-6">
       <div className="max-w-5xl mx-auto space-y-4">
-        <div className="bg-gradient-to-r from-slate-900 to-blue-700 text-white rounded-2xl shadow-sm overflow-hidden">
+        <div className="bg-gradient-to-r from-public-detail-header-from to-public-detail-header-to text-white rounded-2xl shadow-sm overflow-hidden">
           <div className="p-6 sm:p-8">
-            <Link href="/tutorials" className="text-sm text-white/80 hover:text-white">
+            <Link href="/tutorials" className="text-sm text-public-detail-overlay/80 hover:text-public-detail-overlay">
               Volver
             </Link>
             <h1 className="text-2xl sm:text-3xl font-bold mt-2">{data.title}</h1>
             {data.description ? (
-              <p className="text-white/90 mt-3 whitespace-pre-line">{data.description}</p>
+              <p className="text-public-detail-overlay/90 mt-3 whitespace-pre-line">{data.description}</p>
             ) : null}
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
               {data.user_profile ? (
-                <span className="text-xs px-3 py-1.5 rounded-full bg-white/15 border border-white/20">
+                <span className="text-xs px-3 py-1.5 rounded-full bg-public-detail-overlay/15 border border-public-detail-overlay/20">
                   {data.user_profile}
                 </span>
               ) : null}
               {data.operation_type ? (
-                <span className="text-xs px-3 py-1.5 rounded-full bg-white/15 border border-white/20">
+                <span className="text-xs px-3 py-1.5 rounded-full bg-public-detail-overlay/15 border border-public-detail-overlay/20">
                   {data.operation_type}
                 </span>
               ) : null}
               {data.content_type ? (
-                <span className="text-xs px-3 py-1.5 rounded-full bg-white/15 border border-white/20">
+                <span className="text-xs px-3 py-1.5 rounded-full bg-public-detail-overlay/15 border border-public-detail-overlay/20">
                   {data.content_type}
                 </span>
               ) : null}

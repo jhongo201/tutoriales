@@ -37,16 +37,16 @@ export default async function TutorialsPage({ searchParams }: PageProps) {
   const { data: tutorials, pagination } = await getTutorials(searchParams)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app-bg">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-10 px-6">
+      <div className="bg-gradient-to-r from-public-header-from to-public-header-to text-white py-10 px-6">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
           <div className="bg-white bg-opacity-20 p-3 rounded-xl">
             <GraduationCap size={32} className="text-white" />
           </div>
           <div>
             <h1 className="text-2xl font-bold">Tutoriales y Capacitación</h1>
-            <p className="text-blue-200 text-sm mt-1">
+            <p className="text-public-header-subtitle text-sm mt-1">
               Acceda a guías, videos y recursos de ayuda para el uso del Sistema SGRL
             </p>
           </div>

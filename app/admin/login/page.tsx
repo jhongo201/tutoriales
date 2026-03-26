@@ -40,12 +40,12 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-slate-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-admin-sidebar-bg px-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-2xl mb-4">
-            <GraduationCap size={32} className="text-blue-700" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-soft rounded-2xl mb-4">
+            <GraduationCap size={32} className="text-primary" />
           </div>
           <h1 className="text-xl font-bold text-gray-900">
             Panel de Administración
@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
           <p className="text-sm text-gray-500 mt-1">
             Tutoriales y Capacitación — SGRL
           </p>
-          <div className="mt-3 text-xs text-blue-600 bg-blue-50 rounded-lg px-3 py-1.5 inline-block">
+          <div className="mt-3 text-xs text-primary bg-primary-soft rounded-lg px-3 py-1.5 inline-block">
             Ingrese con sus credenciales del Directorio Activo
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function AdminLoginPage() {
               placeholder="usuario.nombre"
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               required
               autoComplete="username"
             />
@@ -84,7 +84,7 @@ export default function AdminLoginPage() {
               placeholder="Contraseña de Windows"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               required
               autoComplete="current-password"
             />
@@ -100,7 +100,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />

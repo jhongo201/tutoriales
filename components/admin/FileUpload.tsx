@@ -112,7 +112,7 @@ export default function FileUpload({ fileType, value, onUploaded }: FileUploadPr
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         onClick={() => inputRef.current?.click()}
-        className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors"
+        className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center cursor-pointer hover:border-primary hover:bg-primary-soft transition-colors"
       >
         <input
           ref={inputRef}
@@ -123,11 +123,11 @@ export default function FileUpload({ fileType, value, onUploaded }: FileUploadPr
         />
         {uploading ? (
           <div className="space-y-2">
-            <div className="animate-spin h-8 w-8 border-b-2 border-blue-600 rounded-full mx-auto" />
-            <p className="text-sm text-blue-600">Subiendo archivo...</p>
+            <div className="animate-spin h-8 w-8 border-b-2 border-primary rounded-full mx-auto" />
+            <p className="text-sm text-primary">Subiendo archivo...</p>
             <div className="w-full bg-gray-200 rounded-full h-1.5">
               <div
-                className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+                className="bg-primary h-1.5 rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
             </div>

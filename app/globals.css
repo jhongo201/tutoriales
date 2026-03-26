@@ -5,12 +5,85 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Colores principales */
+    --color-primary: 29 78 216;
+    --color-primary-hover: 30 64 175;
+    --color-primary-soft: 219 234 254;
+
+    /* Fondos */
+    --color-app-bg: 249 250 251;
+    --color-surface: 255 255 255;
+    --color-muted: 243 244 246;
+    --color-border: 229 231 235;
+
+    /* Textos */
+    --color-text: 17 24 39;
+    --color-text-muted: 107 114 128;
+
+    /* Sidebar admin */
+    --color-admin-sidebar-bg: 15 23 42;
+    --color-admin-sidebar-bg-2: 30 41 59;
+    --color-admin-sidebar-border: 51 65 85;
+    --color-admin-sidebar-text: 255 255 255;
+    --color-admin-sidebar-text-muted: 148 163 184;
+    --color-admin-sidebar-nav: 203 213 225;
+    --color-admin-sidebar-active-bg: 37 99 235;
+
+    /* Badges */
+    --color-badge-video-bg: 219 234 254;
+    --color-badge-video-fg: 29 78 216;
+    --color-badge-pdf-bg: 243 232 255;
+    --color-badge-pdf-fg: 126 34 206;
+    --color-badge-faq-bg: 207 250 254;
+    --color-badge-faq-fg: 14 116 144;
+    --color-badge-infografia-bg: 220 252 231;
+    --color-badge-infografia-fg: 21 128 61;
+
+    /* Tipos de badge */
+    --color-badge-agente: 37 99 235;
+    --color-badge-agencia: 22 163 74;
+    --color-badge-corredor: 249 115 22;
+    --color-badge-todos: 147 51 234;
+
+    /* Badges */
+    --color-badge-active-bg: 220 252 231;
+    --color-badge-active-fg: 21 128 61;
+    --color-badge-active-hover: 187 247 208;
+    --color-badge-inactive-bg: 243 244 246;
+    --color-badge-inactive-fg: 107 114 128;
+    --color-badge-inactive-hover: 229 231 235;
+
+    /* Tipos de contenido publico */
+    --color-public-video-from: 15 23 42;
+    --color-public-video-via: 23 37 84;
+    --color-public-video-to: 30 41 59;
+    --color-public-pdf-from: 59 7 100;
+    --color-public-pdf-via: 15 23 42;
+    --color-public-pdf-to: 88 28 135;
+    --color-public-faq-from: 15 23 42;
+    --color-public-faq-via: 8 51 68;
+    --color-public-faq-to: 30 41 59;
+    --color-public-infografia-from: 5 46 22;
+    --color-public-infografia-via: 15 23 42;
+    --color-public-infografia-to: 20 83 45;
+
+    /* Header del home publico */
+    --color-public-header-from: 1 144 105;
+    --color-public-header-to: 6 95 70;
+    --color-public-header-subtitle: 209 250 229;
+
+    /* Header de detalle publico */
+    --color-public-detail-header-from: 1 144 105;
+    --color-public-detail-header-to: 6 95 70;
+    --color-public-detail-overlay: 209 250 229;
+  }
   * {
     box-sizing: border-box;
   }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    @apply text-gray-900 bg-gray-50;
+    @apply text-app-text bg-app-bg;
   }
 }
 

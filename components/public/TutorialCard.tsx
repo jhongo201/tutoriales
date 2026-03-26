@@ -13,32 +13,32 @@ const CONTENT_TYPE_CONFIG: Record<string, {
 }> = {
   VIDEO_TUTORIAL: {
     label: 'VIDEO TUTORIAL',
-    badgeClass: 'bg-blue-600',
-    bgClass: 'bg-gradient-to-br from-slate-900 via-blue-950 to-slate-800',
+    badgeClass: 'bg-primary',
+    bgClass: 'bg-gradient-to-br from-public-video-from via-public-video-via to-public-video-to',
     icon: '▶',
     actionLabel: 'Ver Video',
     actionIcon: '▶',
   },
   MANUAL_PDF: {
     label: 'MANUAL PDF',
-    badgeClass: 'bg-purple-600',
-    bgClass: 'bg-gradient-to-br from-purple-950 via-slate-900 to-purple-900',
+    badgeClass: 'bg-primary',
+    bgClass: 'bg-gradient-to-br from-public-pdf-from via-public-pdf-via to-public-pdf-to',
     icon: '📄',
     actionLabel: 'Descargar PDF',
     actionIcon: '⬇',
   },
   FAQ: {
     label: 'PREGUNTA FRECUENTE',
-    badgeClass: 'bg-cyan-600',
-    bgClass: 'bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-800',
+    badgeClass: 'bg-primary',
+    bgClass: 'bg-gradient-to-br from-public-faq-from via-public-faq-via to-public-faq-to',
     icon: '❓',
     actionLabel: 'Ver Preguntas',
     actionIcon: '?',
   },
   INFOGRAFIA: {
     label: 'INFOGRAFÍA',
-    badgeClass: 'bg-green-600',
-    bgClass: 'bg-gradient-to-br from-green-950 via-slate-900 to-green-900',
+    badgeClass: 'bg-primary',
+    bgClass: 'bg-gradient-to-br from-public-infografia-from via-public-infografia-via to-public-infografia-to',
     icon: '📊',
     actionLabel: 'Ver Infografía',
     actionIcon: '📊',
@@ -46,10 +46,10 @@ const CONTENT_TYPE_CONFIG: Record<string, {
 }
 
 const PROFILE_COLORS: Record<string, string> = {
-  AGENTE: 'bg-blue-600',
-  AGENCIA: 'bg-green-600',
-  CORREDOR: 'bg-orange-500',
-  TODOS: 'bg-purple-600',
+  AGENTE: 'bg-badge-agente',
+  AGENCIA: 'bg-badge-agencia',
+  CORREDOR: 'bg-badge-corredor',
+  TODOS: 'bg-badge-todos',
 }
 
 const PROFILE_LABELS: Record<string, string> = {
@@ -65,7 +65,7 @@ interface TutorialCardProps {
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const config = CONTENT_TYPE_CONFIG[tutorial.content_type] || CONTENT_TYPE_CONFIG.FAQ
-  const profileColor = PROFILE_COLORS[tutorial.user_profile] || 'bg-gray-600'
+  const profileColor = PROFILE_COLORS[tutorial.user_profile] || 'bg-primary'
   const profileLabel = PROFILE_LABELS[tutorial.user_profile] || tutorial.user_profile
 
   const operationTags = tutorial.operation_type
