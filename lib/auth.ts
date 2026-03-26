@@ -1,6 +1,7 @@
 import ldap from 'ldapjs'
 import jwt from 'jsonwebtoken'
 import { getDb, sql } from './db'
+import type { NextRequest } from 'next/server'
 
 export interface AdminUser {
   username: string
@@ -203,4 +204,14 @@ export function verifyToken(token: string): JWTPayload | null {
 export function extractToken(authHeader: string | null): string | null {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null
   return authHeader.substring(7)
+}
+
+export function extractTokenFromCookie(req: NextRequest): string | null {
+  const name = process.env.AUTH_COOKIE_NAME || 'admin_token'
+  const value = req.cookies.get(name)?.value
+  return value || null
+}
+
+export function getRequestToken(req: NextRequest): string | null {
+  return extractTokenFromCookie(req) || extractToken(req.headers.get('Authorization'))
 }

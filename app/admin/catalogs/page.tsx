@@ -25,8 +25,6 @@ export default function AdminCatalogsPage() {
   const [error, setError] = useState('')
   const [savingId, setSavingId] = useState<number | 'new' | null>(null)
 
-  const token = typeof window !== 'undefined' ? localStorage.getItem('admin_token') : null
-
   const emptyNew = useMemo<CatalogItem>(() => ({
     id: -1,
     code: '',
@@ -42,9 +40,7 @@ export default function AdminCatalogsPage() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch(`/tutorials/api/catalogs/${tab}?includeInactive=1`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-      })
+      const res = await fetch(`/tutorials/api/catalogs/${tab}?includeInactive=1`, { credentials: 'include' })
       const data = await res.json()
       if (!res.ok) {
         setError(data.error || 'Error al cargar catálogo')
@@ -69,7 +65,7 @@ export default function AdminCatalogsPage() {
     try {
       const res = await fetch(`/tutorials/api/catalogs/${tab}/${item.id}`, {
         method: 'DELETE',
-        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        credentials: 'include',
       })
       const data = await res.json()
       if (!res.ok) {
@@ -102,8 +98,8 @@ export default function AdminCatalogsPage() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
+        credentials: 'include',
         body: JSON.stringify({
           code: item.code,
           label: item.label,
@@ -133,8 +129,8 @@ export default function AdminCatalogsPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
+        credentials: 'include',
         body: JSON.stringify({
           code: newItem.code,
           label: newItem.label,

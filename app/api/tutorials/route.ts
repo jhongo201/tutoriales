@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb, sql } from '@/lib/db'
 import { withAuth } from '@/lib/middleware'
-import { extractToken, verifyToken } from '@/lib/auth'
+import { getRequestToken, verifyToken } from '@/lib/auth'
 
 // GET — Lista pública con filtros
 export async function GET(req: NextRequest) {
@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
     const offset = (page - 1) * limit
 
     if (includeInactive) {
-      const token = extractToken(req.headers.get('Authorization'))
+      const token = getRequestToken(req)
       if (!token || !verifyToken(token)) {
         return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
       }

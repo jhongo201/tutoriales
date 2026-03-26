@@ -1,9 +1,9 @@
 
 import { NextRequest, NextResponse } from 'next/server'
-import { extractToken, verifyToken } from '@/lib/auth'
+import { getRequestToken, verifyToken } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
-  const token = extractToken(req.headers.get('Authorization'))
+  const token = getRequestToken(req)
   if (!token) {
     return NextResponse.json({ valid: false }, { status: 401 })
   }

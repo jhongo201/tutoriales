@@ -29,16 +29,13 @@ export default function AdminTutorialsPage() {
   const [pagination, setPagination] = useState<{ page: number; limit: number; total: number; pages: number } | null>(null)
 
   const loadTutorials = async (targetPage = page) => {
-    const token = localStorage.getItem('admin_token')
     const params = new URLSearchParams({
       limit: String(limit),
       page: String(targetPage),
       includeInactive: '1',
     })
     if (search) params.set('search', search)
-    const res = await fetch(`/tutorials/api/tutorials?${params}`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-    })
+    const res = await fetch(`/tutorials/api/tutorials?${params}`, { credentials: 'include' })
     const data = await res.json()
     // Admin también ve inactivos — llamada separada con token
     setTutorials(data.data || [])
@@ -57,13 +54,12 @@ export default function AdminTutorialsPage() {
 
   const toggleActive = async (id: number, current: boolean) => {
     setToggling(id)
-    const token = localStorage.getItem('admin_token')
     await fetch(`/tutorials/api/tutorials/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
+      credentials: 'include',
       body: JSON.stringify({ active: !current }),
     })
     await loadTutorials(page)
@@ -72,12 +68,9 @@ export default function AdminTutorialsPage() {
 
   const deleteTutorial = async (id: number) => {
     setToggling(id)
-    const token = localStorage.getItem('admin_token')
     await fetch(`/tutorials/api/tutorials/${id}`, {
       method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: 'include',
     })
 
     await loadTutorials(page)

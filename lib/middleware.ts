@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyToken, extractToken } from './auth'
+import { verifyToken, getRequestToken } from './auth'
 
 export function withAuth(
   handler: (req: NextRequest, context: any, user: any) => Promise<NextResponse>
 ) {
   return async (req: NextRequest, context: any) => {
-    const token = extractToken(req.headers.get('Authorization'))
+    const token = getRequestToken(req)
 
     if (!token) {
       return NextResponse.json(

@@ -20,14 +20,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setLoading(false)
       return
     }
-    const token = localStorage.getItem('admin_token')
-    const userData = localStorage.getItem('admin_user')
-    if (!token || !userData) {
-      router.push(loginPath)
-    } else {
-      setUser(JSON.parse(userData))
-      setLoading(false)
-    }
+    ;(async () => {
+      try {
+        const res = await fetch(`${basePath}/api/auth/verify`, { credentials: 'include' })
+        if (!res.ok) {
+          router.push(loginPath)
+          return
+        }
+        const data = await res.json()
+        if (!data?.valid || !data?.user) {
+          router.push(loginPath)
+          return
+        }
+        setUser(data.user)
+        setLoading(false)
+      } catch {
+        router.push(loginPath)
+      }
+    })()
   }, [normalizedPathname, loginPath])
 
   if (loading) {

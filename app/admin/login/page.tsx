@@ -20,6 +20,7 @@ export default function AdminLoginPage() {
       const res = await fetch(`${basePath}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(form),
       })
 
@@ -30,8 +31,6 @@ export default function AdminLoginPage() {
         return
       }
 
-      localStorage.setItem('admin_token', data.token)
-      localStorage.setItem('admin_user', JSON.stringify(data.user))
       router.push('/admin/dashboard')
     } catch {
       setError('Error de conexión. Intente nuevamente.')

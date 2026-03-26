@@ -24,9 +24,12 @@ export default function Sidebar({ user }: { user: any }) {
     : pathname
 
   const logout = () => {
-    localStorage.removeItem('admin_token')
-    localStorage.removeItem('admin_user')
-    router.push('/admin/login')
+    fetch(`${basePath}/api/auth/logout`, {
+      method: 'POST',
+      credentials: 'include',
+    }).finally(() => {
+      router.push('/admin/login')
+    })
   }
 
   return (

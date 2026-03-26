@@ -38,13 +38,9 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
     setForm((prev) => ({ ...prev, [key]: value }))
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token')
-
     const loadCatalog = async (path: string, setter: (items: CatalogItem[]) => void) => {
       try {
-        const res = await fetch(`/tutorials/api/catalogs/${path}?includeInactive=1`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-        })
+        const res = await fetch(`/tutorials/api/catalogs/${path}?includeInactive=1`, { credentials: 'include' })
         const data = await res.json()
         if (!res.ok) return
         setter(Array.isArray(data.data) ? data.data : [])
@@ -69,7 +65,6 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
     setSaving(true)
     setError('')
 
-    const token = localStorage.getItem('admin_token')
     const url = mode === 'create'
       ? '/tutorials/api/tutorials'
       : `/tutorials/api/tutorials/${tutorialId}`
@@ -79,8 +74,8 @@ export default function TutorialForm({ initial, mode, tutorialId }: TutorialForm
         method: mode === 'create' ? 'POST' : 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
         },
+        credentials: 'include',
         body: JSON.stringify(form),
       })
 

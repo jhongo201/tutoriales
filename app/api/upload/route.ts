@@ -3,7 +3,7 @@ import { writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
-import { verifyToken, extractToken } from '@/lib/auth'
+import { verifyToken, getRequestToken } from '@/lib/auth'
 
 const ALLOWED_VIDEO = ['video/mp4', 'video/webm', 'video/ogg']
 const ALLOWED_PDF = ['application/pdf']
@@ -12,7 +12,7 @@ const MAX_SIZE = parseInt(process.env.MAX_FILE_SIZE || '104857600') // 100MB
 
 export async function POST(req: NextRequest) {
   // Verificar autenticación
-  const token = extractToken(req.headers.get('Authorization'))
+  const token = getRequestToken(req)
   if (!token || !verifyToken(token)) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
   }

@@ -64,7 +64,6 @@ export default function FileUpload({ fileType, value, onUploaded }: FileUploadPr
     setUploading(true)
     setProgress(10)
 
-    const token = localStorage.getItem('admin_token')
     const formData = new FormData()
     formData.append('file', file)
     formData.append('type', fileType)
@@ -76,7 +75,7 @@ export default function FileUpload({ fileType, value, onUploaded }: FileUploadPr
     try {
       const res = await fetch(`${basePath}/api/upload`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
+        credentials: 'include',
         body: formData,
       })
 

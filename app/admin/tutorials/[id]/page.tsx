@@ -11,10 +11,7 @@ export default function EditTutorialPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token')
-    fetch(`/tutorials/api/tutorials/${id}?includeInactive=1`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-    })
+    fetch(`/tutorials/api/tutorials/${id}?includeInactive=1`, { credentials: 'include' })
       .then((r) => r.json())
       .then((data) => { setTutorial(data); setLoading(false) })
   }, [id])
