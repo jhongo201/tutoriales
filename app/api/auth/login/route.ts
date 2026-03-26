@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateWithAD, authenticateLocalUser, generateToken } from '@/lib/auth'
+import { buildRateLimitHeaders, checkRateLimit, getClientIp } from '@/lib/rateLimit'
 
 function getCookieOptions() {
   const name = process.env.AUTH_COOKIE_NAME || 'admin_token'
@@ -28,6 +29,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: 'Usuario y contraseña son requeridos' },
         { status: 400 }
+      )
+    }
+
+    const ip = getClientIp(req)
+    const loginLimit = Math.max(1, parseInt(process.env.RATE_LIMIT_LOGIN_LIMIT || '10'))
+    const loginWindowMs = Math.max(1, parseInt(process.env.RATE_LIMIT_LOGIN_WINDOW_MS || String(10 * 60 * 1000)))
+    const rate = checkRateLimit({
+      key: `login:${ip}:${String(username).trim().toLowerCase()}`,
+      limit: loginLimit,
+      windowMs: loginWindowMs,
+    })
+    if (!rate.ok) {
+      return NextResponse.json(
+        { error: 'Demasiados intentos. Intente más tarde.' },
+        { status: 429, headers: buildRateLimitHeaders(rate) }
       )
     }
 
@@ -61,7 +77,7 @@ export async function POST(req: NextRequest) {
         email: user.email,
       },
       expiresIn: process.env.JWT_EXPIRES_IN || '8h',
-    })
+    }, { headers: buildRateLimitHeaders(rate) })
 
     const { name, options } = getCookieOptions()
     res.cookies.set(name, token, options)

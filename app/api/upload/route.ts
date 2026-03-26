@@ -4,6 +4,7 @@ import { existsSync } from 'fs'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 import { verifyToken, getRequestToken } from '@/lib/auth'
+import { buildRateLimitHeaders, checkRateLimit, getClientIp } from '@/lib/rateLimit'
 
 const ALLOWED_VIDEO = ['video/mp4', 'video/webm', 'video/ogg']
 const ALLOWED_PDF = ['application/pdf']
@@ -15,6 +16,21 @@ export async function POST(req: NextRequest) {
   const token = getRequestToken(req)
   if (!token || !verifyToken(token)) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+  }
+
+  const ip = getClientIp(req)
+  const uploadLimit = Math.max(1, parseInt(process.env.RATE_LIMIT_UPLOAD_LIMIT || '20'))
+  const uploadWindowMs = Math.max(1, parseInt(process.env.RATE_LIMIT_UPLOAD_WINDOW_MS || String(10 * 60 * 1000)))
+  const rate = checkRateLimit({
+    key: `upload:${ip}`,
+    limit: uploadLimit,
+    windowMs: uploadWindowMs,
+  })
+  if (!rate.ok) {
+    return NextResponse.json(
+      { error: 'Demasiadas subidas. Intente más tarde.' },
+      { status: 429, headers: buildRateLimitHeaders(rate) }
+    )
   }
 
   try {
@@ -121,7 +137,7 @@ export async function POST(req: NextRequest) {
       fileName,
       size: file.size,
       type: file.type,
-    })
+    }, { headers: buildRateLimitHeaders(rate) })
   } catch (error) {
     console.error('Error en upload:', error)
     return NextResponse.json({ error: 'Error al subir el archivo' }, { status: 500 })
